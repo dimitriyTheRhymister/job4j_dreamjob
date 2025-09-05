@@ -15,10 +15,12 @@ public class GlobalControllerAdvice {
             return "home";
         } else if (path.startsWith("/vacancies/create")) {
             return "vacancies-create";
-        } else if (path.startsWith("/candidates")) {
-            return "candidates";
+        } else if (path.startsWith("/candidates/create")) {
+            return "candidates-create";
         } else if (path.startsWith("/vacancies")) {
             return "vacancies";
+        } else if (path.startsWith("/candidates")) {
+            return "candidates";
         }
 
         return "";
