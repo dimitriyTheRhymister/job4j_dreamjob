@@ -3,31 +3,24 @@
 <head th:replace="~{fragments/header :: header('Работа мечты!')}"><title>dream job</title></head>
 <body>
 <div th:replace="fragments/navigation :: navigation"></div>
-<div class="container">
-    <div class="row">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>First</th>
-                <th>Last</th>
-                <th>Handle</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td>
-            </tr>
-            <tr>
-                <td>2</td><td>Jacob</td><td>Thornton</td><td>@fat</td>
-            </tr>
-            <tr>
-                <td>3</td><td>Larry</td><td>the Bird</td><td>@twitter</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+
+<h1 class="pl-5 pt-3 mt-4">job4j_dreamjob</h1>
+<h3 class="pl-5">Выполняется в рамках курса Job4j</h3>
+
+<ul class="pl-5 pt-3 mt-4">
+    <li><a class="nav-item nav-link"
+           th:classappend="${currentPage == 'vacancies'} ? 'active'"
+           th:href="@{/vacancies}">Вакансии</a></li>
+    <li><a class="nav-item nav-link"
+           th:classappend="${currentPage == 'candidates'} ? 'active'"
+           th:href="@{/candidates}">Кандидаты</a></li>
+    <li> <a class="nav-item nav-link"
+            th:classappend="${currentPage == 'vacancies-create'} ? 'active'"
+            th:href="@{/vacancies/create}">Создать вакансию</a></li>
+    <li><a class="nav-item nav-link"
+           th:classappend="${currentPage == 'candidates-create'} ? 'active'"
+           th:href="@{/candidates/create}">Создать резюме</a></li>
+</ul>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
