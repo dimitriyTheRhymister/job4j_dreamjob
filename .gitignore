@@ -55,3 +55,6 @@ buildNumber.properties
 *.h2.db
 *.tmp
 temp/
+
+# Исключение для основного конфигурационного файла
+!src/main/resources/application.properties
