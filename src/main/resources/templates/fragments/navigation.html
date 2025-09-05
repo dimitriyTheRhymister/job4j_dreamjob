@@ -14,6 +14,9 @@
                 <a class="nav-item nav-link"
                    th:classappend="${currentPage == 'candidates'} ? 'active'"
                    th:href="@{/candidates}">Кандидаты</a>
+                <a class="nav-item nav-link"
+                   th:classappend="${currentPage == 'vacancies-create'} ? 'active'"
+                   th:href="@{/vacancies/create}">Создать вакансию</a>
             </div>
         </div>
     </div>
