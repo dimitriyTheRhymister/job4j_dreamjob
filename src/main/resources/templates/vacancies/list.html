@@ -2,13 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="~{fragments/header :: header('Работа мечты!')}"><title>vacancies list</title></head>
 <body>
+<div th:replace="fragments/navigation :: navigation"></div>
 <div class="container">
     <div class="row">
         <table class="table">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Имя</th>
+                <th scope="col">Название</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Дата</th>
             </tr>
             </thead>
             <tbody>
