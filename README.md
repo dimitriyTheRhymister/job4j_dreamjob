@@ -1,5 +1,10 @@
 # job4j_dreamjob
 
+- [Вакансии](https://github.com/dimitriyTheRhymister/job4j_dreamjob/blob/master/src/main/resources/templates/vacancies/list.html "Перейти в Вакансии")
+- [Резюме](https://github.com/dimitriyTheRhymister/job4j_dreamjob/blob/master/src/main/resources/templates/candidates/list.html "Перейти в Резюме")
+- [Создать вакансию](https://github.com/dimitriyTheRhymister/job4j_dreamjob/blob/master/src/main/resources/templates/vacancies/create.html "Создать вакансию")
+- [Создать резюме](https://github.com/dimitriyTheRhymister/job4j_dreamjob/blob/master/src/main/resources/templates/candidates/create.html "Создать резюме")
+
 В этом блоке - основы создания веб-приложений на языке Java.
 
 Мы будем использовать Spring (в частности Spring MVC и Spring Boot) как основной фреймворк для разработки.
