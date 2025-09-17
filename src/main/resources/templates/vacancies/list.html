@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="~{fragments/header :: header('Работа мечты!')}"><title>vacancies list</title></head>
+<head th:replace="~{fragments/header :: header('Работа мечты!')}">
+    <title>vacancies list</title>
+</head>
 <body>
 <div th:replace="~{fragments/navigation :: navigation}"></div>
 <div class="container">
     <div class="row">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Название</th>
-                <th scope="col">Дата создания</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="vacancy: ${vacancies}">
-                <td th:text="${vacancy.id}"></td>
-                <td>
-                    <a th:text="${vacancy.title}"
-                       th:href="@{/vacancies/{vacancyId}(vacancyId=${vacancy.id})}">
-                    </a>
-                </td>
-                <td th:text="${#temporals.format(vacancy.creationDate, 'dd.MM.yyyy HH:mm')}"></td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="container">
+            <div class="row">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th><i class="bi bi-square"></i></th>
+                        <th scope="col">#</th>
+                        <th scope="col">Название</th>
+                        <th scope="col">Дата создания</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="vacancy: ${vacancies}">
+                        <td>
+                            <i th:if="${vacancy.visible}" class="bi bi-check-square text-success"></i>
+                            <i th:if="${!vacancy.visible}" class="bi bi-square text-secondary"></i>
+                        </td>
+                        <td th:text="${vacancy.id}"></td>
+                        <td><a th:text="${vacancy.title}"
+                               th:href="@{/vacancies/{vacancyId}(vacancyId=${vacancy.id})}"></a>
+                        </td>
+                        <td th:text="${vacancy.creationDate}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 <div th:replace="~{fragments/footer :: footer}"></div>
