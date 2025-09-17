@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Service
-public class SimpleCandidateService implements CandidateService{
+public class SimpleCandidateService implements CandidateService {
 
 private final CandidateRepository candidateRepository;
 
