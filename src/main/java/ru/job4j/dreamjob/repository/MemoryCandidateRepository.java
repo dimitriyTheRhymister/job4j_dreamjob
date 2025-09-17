@@ -1,19 +1,21 @@
 package ru.job4j.dreamjob.repository;
 
+import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Repository;
 import ru.job4j.dreamjob.model.Candidate;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
+@ThreadSafe
 @Repository
 public class MemoryCandidateRepository implements CandidateRepository {
 
-    private int nextId = 1;
+    private final AtomicInteger nextId = new AtomicInteger(0);
 
-    private final Map<Integer, Candidate> candidates = new HashMap<>();
+    private final ConcurrentHashMap<Integer, Candidate> candidates = new ConcurrentHashMap<>();
 
     public MemoryCandidateRepository() {
         save(new Candidate(0, "Ivan Ivanov", "Intern Java Developer"));
@@ -26,7 +28,7 @@ public class MemoryCandidateRepository implements CandidateRepository {
 
     @Override
     public void save(Candidate candidate) {
-        candidate.setId(nextId++);
+        candidate.setId(nextId.incrementAndGet());
         candidates.put(candidate.getId(), candidate);
     }
 
@@ -37,8 +39,11 @@ public class MemoryCandidateRepository implements CandidateRepository {
 
     @Override
     public boolean update(Candidate candidate) {
-        return candidates.computeIfPresent(candidate.getId(),
-                (id, oldCandidate) -> new Candidate(oldCandidate.getId(), candidate.getName(), candidate.getDescription())) != null;
+        return candidates.computeIfPresent(candidate.getId(), (id, oldCandidate) -> {
+            oldCandidate.setName(candidate.getName());
+            oldCandidate.setDescription(candidate.getDescription());
+            return oldCandidate;
+        }) != null;
     }
 
     @Override
