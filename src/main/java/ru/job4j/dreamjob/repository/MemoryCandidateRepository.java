@@ -17,7 +17,7 @@ public class MemoryCandidateRepository implements CandidateRepository {
 
     private final Map<Integer, Candidate> candidates = new HashMap<>();
 
-    private MemoryCandidateRepository() {
+    public MemoryCandidateRepository() {
         save(new Candidate(0, "Ivan Ivanov", "Intern Java Developer"));
         save(new Candidate(0, "Petr Petrov", "Junior Java Developer"));
         save(new Candidate(0, "Stepan Stepanov", "Junior+ Java Developer"));
