@@ -18,12 +18,12 @@ public class MemoryCandidateRepository implements CandidateRepository {
     private final ConcurrentHashMap<Integer, Candidate> candidates = new ConcurrentHashMap<>();
 
     public MemoryCandidateRepository() {
-        save(new Candidate(0, "Ivan Ivanov", "Intern Java Developer"));
-        save(new Candidate(0, "Petr Petrov", "Junior Java Developer"));
-        save(new Candidate(0, "Stepan Stepanov", "Junior+ Java Developer"));
-        save(new Candidate(0, "Anna Ivanova", "Middle Java Developer"));
-        save(new Candidate(0, "Mariya Petrova", "Middle+ Java Developer"));
-        save(new Candidate(0, "Elena Stepanova", "Senior Java Developer"));
+        save(new Candidate(0, "Ivan Ivanov", "Intern Java Developer", 0));
+        save(new Candidate(0, "Petr Petrov", "Junior Java Developer", 0));
+        save(new Candidate(0, "Stepan Stepanov", "Junior+ Java Developer", 0));
+        save(new Candidate(0, "Anna Ivanova", "Middle Java Developer", 0));
+        save(new Candidate(0, "Mariya Petrova", "Middle+ Java Developer", 0));
+        save(new Candidate(0, "Elena Stepanova", "Senior Java Developer", 0));
     }
 
     @Override
@@ -39,11 +39,7 @@ public class MemoryCandidateRepository implements CandidateRepository {
 
     @Override
     public boolean update(Candidate candidate) {
-        return candidates.computeIfPresent(candidate.getId(), (id, oldCandidate) -> {
-            oldCandidate.setName(candidate.getName());
-            oldCandidate.setDescription(candidate.getDescription());
-            return oldCandidate;
-        }) != null;
+        return candidates.computeIfPresent(candidate.getId(), (id, oldCandidate) -> new Candidate(oldCandidate.getId(), candidate.getName(), candidate.getDescription(), candidate.getFileId())) != null;
     }
 
     @Override
