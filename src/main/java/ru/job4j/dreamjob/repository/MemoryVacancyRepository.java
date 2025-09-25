@@ -27,9 +27,10 @@ public class MemoryVacancyRepository implements VacancyRepository {
     }
 
     @Override
-    public void save(Vacancy vacancy) {
+    public Vacancy save(Vacancy vacancy) {
         vacancy.setId(nextId.incrementAndGet());
         vacancies.put(vacancy.getId(), vacancy);
+        return vacancy;
     }
 
     @Override
