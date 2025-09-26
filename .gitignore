@@ -56,5 +56,7 @@ buildNumber.properties
 *.tmp
 temp/
 
-# Исключение для основного конфигурационного файла
-!src/main/resources/application.properties
+# Исключения для конфигурационных файлов проекта
+!src/main/resources/*.properties
+!src/test/resources/*.properties
+!db/*.properties
