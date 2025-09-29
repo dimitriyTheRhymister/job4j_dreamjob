@@ -3,9 +3,11 @@ package ru.job4j.dreamjob.repository;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 import ru.job4j.dreamjob.model.User;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
 
+@Slf4j
 @Repository
 public class Sql2oUserRepository implements UserRepository {
 
@@ -30,6 +32,7 @@ public class Sql2oUserRepository implements UserRepository {
             user.setId(generatedId);
             return Optional.of(user);
         } catch (Exception e) {
+            log.error("Error saving user: {}", user.getEmail(), e);
             return Optional.empty();
         }
     }
