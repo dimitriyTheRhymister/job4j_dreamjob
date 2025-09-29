@@ -10,7 +10,6 @@ import java.util.Properties;
 
 import static java.util.Optional.empty;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class Sql2oUserRepositoryTest {
 
@@ -79,12 +78,14 @@ public class Sql2oUserRepositoryTest {
     }
 
     @Test
-    public void whenSaveSameEmailThenThrowsException() {
+    public void whenSaveSameEmailThenReturnEmptyOptional() {
         var user1 = new ru.job4j.dreamjob.model.User(0, "duplicate@example.com", "User One", "password123");
         var user2 = new ru.job4j.dreamjob.model.User(0, "duplicate@example.com", "User Two", "password456");
 
         sql2oUserRepository.save(user1);
 
-        assertThrows(Exception.class, () -> sql2oUserRepository.save(user2));
+        var result = sql2oUserRepository.save(user2);
+
+        assertThat(result.isEmpty()).isTrue();
     }
 }

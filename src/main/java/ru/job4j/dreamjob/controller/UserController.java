@@ -23,16 +23,12 @@ public class UserController {
 
     @PostMapping("/register")
     public String register(@ModelAttribute User user, Model model) {
-        try {
-            var savedUser = userService.save(user);
-            if (savedUser.isEmpty()) {
-                model.addAttribute("message", "Пользователь с таким email уже существует.");
-                return "users/register";
-            }
-            return "redirect:/index";
-        } catch (Exception exception) {
-            model.addAttribute("message", "Ошибка при регистрации: " + exception.getMessage());
-            return "errors/404";
+
+        var savedUser = userService.save(user);
+        if (savedUser.isEmpty()) {
+            model.addAttribute("message", "Пользователь с таким email уже существует.");
+            return "users/register";
         }
+        return "redirect:/index";
     }
 }
